@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('mis-ideas', 'IdeaController@index');
-Route::post('ideas/{id}', 'IdeaController@store');
+Route::post('guardar-idea', 'IdeaController@store');

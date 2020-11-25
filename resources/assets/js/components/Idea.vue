@@ -3,11 +3,13 @@
     <h2 class="text-center">Captura tus ideas</h2>
     <div class="well">
       <h4>¿En que estas pensando?</h4>
-      <form action="">
+      <form v-on:submit.prevent="createIdea">
         <div class="input-group">
-          <input type="text" class="form-control input-sm" />
+          <input type="text" class="form-control input-sm" v-model="newIdea" maxlength="265" />
           <div class="input-group-btn">
-            <button class="btn btn-sm btn-default">Agregar</button>
+            <button type="submit" class="btn btn-sm btn-default">
+              Agregar
+            </button>
           </div>
         </div>
       </form>
@@ -39,11 +41,12 @@ export default {
   data() {
     return {
       ideas: [],
+      newIdea: "",
     };
-  },
+  } /* data  */,
   created() {
     this.getIdeas();
-  },
+  } /* created */,
   methods: {
     getIdeas: function() {
       let urlIdeas = "mis-ideas";
@@ -54,6 +57,22 @@ export default {
       });
     },
     since: (date) => moment(date).fromNow(),
-  },
+    createIdea: function() {
+      let urlIdea = "guardar-idea";
+
+      axios
+        .post(urlIdea, {
+          description: this.newIdea,
+        })
+        .then((res) => {
+          this.getIdeas();
+          this.newIdea = "";
+          toastr.success("Tarea creada");
+        })
+        .catch((error) => {
+          toastr.error("Ocurrio un error");
+        });
+    },
+  } /* methods */,
 };
 </script>
