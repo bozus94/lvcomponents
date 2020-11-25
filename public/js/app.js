@@ -986,7 +986,7 @@ window.Vue = __webpack_require__(35);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component("example", __webpack_require__(39));
+Vue.component("idea", __webpack_require__(39));
 
 var app = new Vue({
   el: "#app"
@@ -44853,7 +44853,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/idea.vue"
+Component.options.__file = "resources/assets/js/components/Idea.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -44862,9 +44862,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4681afe4", Component.options)
+    hotAPI.createRecord("data-v-3ecce7a4", Component.options)
   } else {
-    hotAPI.reload("data-v-4681afe4", Component.options)
+    hotAPI.reload("data-v-3ecce7a4", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -44989,6 +44989,26 @@ module.exports = function normalizeComponent (
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -45003,9 +45023,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Component mounted.");
+  data: function data() {
+    return {
+      ideas: []
+    };
+  },
+  created: function created() {
+    this.getIdeas();
+  },
+
+  methods: {
+    getIdeas: function getIdeas() {
+      var _this = this;
+
+      var urlIdeas = "mis-ideas";
+      __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(urlIdeas).then(function (res) {
+        return _this.ideas = res.data;
+      });
+    }
   }
 });
 
@@ -45017,27 +45055,60 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "idea" }, [
+    _c("h2", { staticClass: "text-center" }, [_vm._v("Captura tus ideas")]),
+    _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "panel panel-success" }, [
+      _c("div", { staticClass: "panel-heading text-center" }, [
+        _vm._v("Mis ideas")
+      ]),
+      _vm._v(" "),
+      _c(
+        "ul",
+        { staticClass: "list-group" },
+        _vm._l(_vm.ideas, function(idea) {
+          return _c("li", { staticClass: "list-group-item" }, [_vm._m(1, true)])
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v("I'm an example component!")
+    return _c("div", { staticClass: "well" }, [
+      _c("h4", [_vm._v("¿En que estas pensando?")]),
+      _vm._v(" "),
+      _c("form", { attrs: { action: "" } }, [
+        _c("div", { staticClass: "input-group" }, [
+          _c("input", {
+            staticClass: "form-control input-sm",
+            attrs: { type: "text" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "input-group-btn" }, [
+            _c("button", { staticClass: "btn btn-sm btn-default" }, [
+              _vm._v("Agregar")
             ])
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v("\n          idea.description "),
+      _c("br"),
+      _vm._v(" "),
+      _c("small", { staticClass: "text-muted" }, [_vm._v("idea.createAt")])
     ])
   }
 ]
@@ -45046,7 +45117,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4681afe4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3ecce7a4", module.exports)
   }
 }
 
