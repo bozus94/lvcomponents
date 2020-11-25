@@ -18,10 +18,10 @@
       <div class="panel-heading text-center">Mis ideas</div>
       <!-- List group -->
       <ul class="list-group">
-        <li class="list-group-item" v-for="idea in ideas">
+        <li v-for="idea in ideas" v-bind:key="idea.id" class="list-group-item">
           <p>
-            idea.description <br />
-            <small class="text-muted">idea.createAt</small>
+            {{ idea.description }} <br />
+            <small class="text-muted">{{ since(idea.created_at) }}</small>
           </p>
         </li>
       </ul>
@@ -31,6 +31,9 @@
 
 <script>
 import axios from "axios";
+import toastr from "toastr";
+import moment from "moment";
+moment.locale("es");
 
 export default {
   data() {
@@ -44,8 +47,13 @@ export default {
   methods: {
     getIdeas: function() {
       let urlIdeas = "mis-ideas";
-      axios.get(urlIdeas).then((res) => (this.ideas = res.data));
+
+      axios.get(urlIdeas).then((res) => {
+        this.ideas = res.data;
+        console.log(this.ideas);
+      });
     },
+    since: (date) => moment(date).fromNow(),
   },
 };
 </script>
